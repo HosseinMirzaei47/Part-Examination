@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.myapplication.databinding.FragmentMyBinding
 
-class MyFragment : Fragment() {
+class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentMyBinding
 
