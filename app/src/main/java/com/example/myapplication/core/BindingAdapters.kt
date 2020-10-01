@@ -7,7 +7,6 @@ import com.bumptech.glide.request.RequestOptions
 
 @BindingAdapter("imageSource")
 fun setImageUrl(imageView: ImageView, imageSource: String?) {
-
     imageSource?.let {
         Glide.with(imageView.context)
             .load(imageSource)

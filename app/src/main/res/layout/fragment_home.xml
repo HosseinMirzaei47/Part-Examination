@@ -99,6 +99,9 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/margin_ten"
                         android:text="@{info.cases+``}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_b2"
+                        android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -108,17 +111,62 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/margin_ten"
                         android:text="@{info.deaths+``}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_b2"
+                        android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/allCasesText" />
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/recovered"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/margin_ten"
                         android:text="@{info.recovered+``}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_b2"
+                        android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/deathsText" />
+
+                    <!--                                                    -->
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/margin_normal"
+                        android:layout_marginBottom="@dimen/margin_normal"
+                        android:text="@string/all_cases"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_b2"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/allCasesText" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/margin_normal"
+                        android:layout_marginBottom="@dimen/margin_normal"
+                        android:text="@string/deaths"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_b2"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/deathsText" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/margin_normal"
+                        android:layout_marginBottom="@dimen/margin_normal"
+                        android:text="@string/recovered"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_b2"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/recovered" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
