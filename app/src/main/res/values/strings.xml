@@ -94,5 +94,12 @@
     <string name="home">Home</string>
     <string name="loading_new_info_country">Loading updated information.</string>
     <string name="details">Details</string>
+    <string name="today_s_recovered">Today\'s Recovered</string>
+    <string name="today_s_deaths">Today\'s Deaths</string>
+    <string name="today_s_cases">Today\'s Cases</string>
+    <string name="recovered">Recovered</string>
+    <string name="deaths_per_million">Deaths Per Million</string>
+    <string name="cases_per_million">Cases Per Million</string>
+    <string name="affected_countries">Affected Countries</string>
 
 </resources>

@@ -197,6 +197,143 @@
                     app:layout_constraintTop_toBottomOf="@id/countryTodayRecovered"
                     app:layout_goneMarginStart="@dimen/margin_small" />
 
+                <!--                                                    -->
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/affectedCountriesT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginEnd="@dimen/margin_normal"
+                    android:text="@string/affected_countries"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_b2"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/affectedCountries"
+                    app:layout_goneMarginStart="@dimen/margin_small" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/casesT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginEnd="@dimen/margin_normal"
+                    android:text="@string/all_cases"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_b2"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/cases"
+                    app:layout_goneMarginStart="@dimen/margin_small" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/casesPerMillionT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginEnd="@dimen/margin_normal"
+                    android:text="@string/cases_per_million"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_b2"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/casesPerMillion"
+                    app:layout_goneMarginStart="@dimen/margin_small" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/deathsT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginEnd="@dimen/margin_normal"
+                    android:text="@string/deaths"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_b2"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/deaths"
+                    app:layout_goneMarginStart="@dimen/margin_small" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/deathsPerMillionT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginEnd="@dimen/margin_normal"
+                    android:text="@string/deaths_per_million"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_b2"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/deathsPerMillion"
+                    app:layout_goneMarginStart="@dimen/margin_small" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/recoveredT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginEnd="@dimen/margin_normal"
+                    android:text="@string/recovered"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_b2"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/recovered"
+                    app:layout_goneMarginStart="@dimen/margin_small" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/todayCasesT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginEnd="@dimen/margin_normal"
+                    android:text="@string/today_s_cases"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_b2"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/todayCases"
+                    app:layout_goneMarginStart="@dimen/margin_small" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/todayRecoveredT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginEnd="@dimen/margin_normal"
+                    android:text="@string/today_s_recovered"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_b2"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/todayRecovered"
+                    app:layout_goneMarginStart="@dimen/margin_small" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/countryTodayRecoveredT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginEnd="@dimen/margin_normal"
+                    android:text="@string/today_s_deaths"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_b2"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/countryTodayRecovered"
+                    app:layout_goneMarginStart="@dimen/margin_small" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.card.MaterialCardView>
