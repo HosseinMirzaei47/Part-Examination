@@ -1,14 +1,20 @@
-package com.example.myapplication.features.home.country
+package com.example.myapplication.features.country
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity(tableName = "countryInfo")
 data class CountryInfoEntity(
-    val _id: Int,
-    val flag: String?,
-    val iso2: String?,
-    val iso3: String?,
-    val lat: Int,
-    val long: Int,
+    @PrimaryKey var _id: Int,
+    var flag: String?,
+    var long: Int,
     var countryName: String
-)
+) {
+    constructor() : this(
+        0,
+        "",
+        0,
+        ""
+    )
+
+}

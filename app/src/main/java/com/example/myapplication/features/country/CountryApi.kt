@@ -1,5 +1,6 @@
 package com.example.myapplication.features.home.country
 
+import com.example.myapplication.features.country.CountryEntity
 import retrofit2.http.GET
 import retrofit2.http.Path
 

@@ -1,10 +1,8 @@
-package com.example.myapplication.features.home.country
+package com.example.myapplication.features.country
 
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import androidx.room.Transaction
+import androidx.room.*
 
+@Dao
 interface CountryInfoDao {
 
     @Transaction

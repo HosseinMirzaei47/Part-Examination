@@ -1,9 +1,11 @@
 package com.example.myapplication.features.home
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity(tableName = "allInfo")
 data class AllInfoEntity(
+    @PrimaryKey(autoGenerate = true) val allId: Int,
     val active: Int,
     val activePerOneMillion: Double,
     val affectedCountries: Int,

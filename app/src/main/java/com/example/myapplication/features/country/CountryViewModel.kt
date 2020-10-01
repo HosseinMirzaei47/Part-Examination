@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.core.resource.Resource
+import com.example.myapplication.features.country.CountryEntity
+import com.example.myapplication.features.country.CountryInfoEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

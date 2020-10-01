@@ -3,6 +3,8 @@ package com.example.myapplication.features.home.country
 import androidx.room.withTransaction
 import com.example.myapplication.core.AppDatabase
 import com.example.myapplication.core.MyApp
+import com.example.myapplication.features.country.CountryEntity
+import com.example.myapplication.features.country.CountryInfoEntity
 
 class CountryLocalDataSource {
 
@@ -16,7 +18,7 @@ class CountryLocalDataSource {
         db.withTransaction {
             data?.let {
                 db.countryDao().insertCountry(data)
-                insertCountryInfo(data.country, data.countryInfo)
+                data.countryInfo?.let { infoEntity -> insertCountryInfo(data.country, infoEntity) }
             }
         }
     }

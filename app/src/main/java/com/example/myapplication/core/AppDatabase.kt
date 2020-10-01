@@ -4,15 +4,15 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.myapplication.features.country.CountryDao
+import com.example.myapplication.features.country.CountryEntity
+import com.example.myapplication.features.country.CountryInfoDao
+import com.example.myapplication.features.country.CountryInfoEntity
 import com.example.myapplication.features.home.AllInfoDao
 import com.example.myapplication.features.home.AllInfoEntity
-import com.example.myapplication.features.home.country.CountryDao
-import com.example.myapplication.features.home.country.CountryInfoDao
-import com.example.myapplication.features.home.country.CountryInfoEntity
-import com.example.myapplication.models.CountryInfo
 
 @Database(
-    entities = [AllInfoEntity::class, CountryInfo::class, CountryInfoEntity::class],
+    entities = [AllInfoEntity::class, CountryEntity::class, CountryInfoEntity::class],
     version = 1,
     exportSchema = false
 )
