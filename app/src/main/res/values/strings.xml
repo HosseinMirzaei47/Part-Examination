@@ -85,5 +85,12 @@
     <string name="noKeyWords">کلید واژه ای یافت نشد</string>
     <string name="noArticles">مقاله ای پیدا نشد</string>
     <string name="errorUsernameTaken">این نام کاربری در دسترس نیست</string>
+    <string name="all_cases">All Cases: </string>
+    <string name="deaths">Deaths: </string>
+    <string name="recovered_cases">Recovered Cases: </string>
+    <string name="search">search</string>
+    <string name="please_wait">Please wait</string>
+    <string name="network_timeout">Something Went Wrong</string>
+    <string name="home">Home</string>
 
 </resources>

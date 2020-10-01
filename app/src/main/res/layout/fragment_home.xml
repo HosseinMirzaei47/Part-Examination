@@ -3,6 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="info"
+            type="com.example.myapplication.features.home.AllInfoEntity" />
+
+    </data>
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeLayout"
         android:layout_width="match_parent"
@@ -35,7 +43,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/homePage"
+                        android:text="@string/home"
                         android:textColor="@color/whiteBackground"
                         android:textSize="@dimen/text_size_b1"
                         android:textStyle="bold" />
@@ -48,32 +56,34 @@
                 android:id="@+id/textInputSearch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_normal"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginEnd="@dimen/margin_normal"
                 android:background="@drawable/shape_search_field"
                 android:drawableStart="@drawable/ic_search"
                 android:drawablePadding="@dimen/home_search_icon_padding"
                 android:gravity="start"
-                android:hint="@string/homeSearchHint"
+                android:hint="@string/search"
                 android:inputType="text"
                 android:maxLines="1"
                 android:padding="@dimen/padding_normal"
                 android:textSize="@dimen/text_size_b2"
-                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/appbar" />
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardProfileInfo"
+                android:id="@+id/allDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_normal"
                 android:layout_marginStart="@dimen/margin_normal"
+                android:layout_marginTop="@dimen/margin_normal"
                 android:layout_marginEnd="@dimen/margin_normal"
                 android:background="@color/whiteBackground"
                 android:elevation="@dimen/elevation"
+                android:layoutDirection="rtl"
                 app:cardCornerRadius="@dimen/radius_normal"
-                app:layout_constraintBottom_toTopOf="@+id/recyclerHomeArticle"
+                app:layout_constraintBottom_toTopOf="@+id/recyclerHome"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textInputSearch">
@@ -84,39 +94,58 @@
                     android:padding="@dimen/padding_small">
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/allCasesText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/margin_ten"
-                        android:text="@string/enter"
+                        android:text="@{info.cases+``}"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/deathsText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_ten"
+                        android:text="@{info.deaths+``}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/allCasesText" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_ten"
+                        android:text="@{info.recovered+``}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/deathsText" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </com.google.android.material.card.MaterialCardView>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerHomeArticle"
+                android:id="@+id/recyclerHome"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginStart="@dimen/margin_normal"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="@dimen/margin_normal"
                 android:layout_marginEnd="@dimen/margin_normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputSearch" />
+                app:layout_constraintTop_toBottomOf="@+id/allDetails"
+                tools:listitem="@layout/item_country_row" />
 
             <ProgressBar
-                android:id="@+id/forYouFeedProgress"
+                android:id="@+id/homeProgress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="@+id/recyclerHomeArticle"
-                app:layout_constraintEnd_toEndOf="@+id/recyclerHomeArticle"
-                app:layout_constraintStart_toStartOf="@+id/recyclerHomeArticle"
-                app:layout_constraintTop_toTopOf="@+id/recyclerHomeArticle" />
+                app:layout_constraintBottom_toBottomOf="@+id/recyclerHome"
+                app:layout_constraintEnd_toEndOf="@+id/recyclerHome"
+                app:layout_constraintStart_toStartOf="@+id/recyclerHome"
+                app:layout_constraintTop_toTopOf="@+id/recyclerHome" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

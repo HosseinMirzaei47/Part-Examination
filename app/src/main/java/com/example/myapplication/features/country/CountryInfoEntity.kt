@@ -7,13 +7,13 @@ import androidx.room.PrimaryKey
 data class CountryInfoEntity(
     @PrimaryKey var _id: Int,
     var flag: String?,
-    var long: Int,
+    var long: Double,
     var countryName: String
 ) {
     constructor() : this(
         0,
         "",
-        0,
+        0.0,
         ""
     )
 
