@@ -1,9 +1,193 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="country"
+            type="com.example.myapplication.features.country.CountryEntity" />
+
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/whiteGlobalBackground"
+        tools:context=".features.home.ui.fragments.ForYouFragment">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/whiteGlobalBackground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:contentInsetStart="@dimen/toolbar_inset_start">
+
+                <TextView
+                    android:id="@+id/toolbar_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@{country.country}"
+                    android:textColor="@color/whiteBackground"
+                    android:textSize="@dimen/text_size_b1"
+                    android:textStyle="bold" />
+
+            </com.google.android.material.appbar.MaterialToolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/textInputSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:layout_marginEnd="@dimen/margin_normal"
+            android:gravity="start"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appbar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/countryFlag"
+                    imageSource="@{country.countryInfo.flag}"
+                    android:layout_width="@dimen/image_dimens"
+                    android:layout_height="@dimen/image_dimens"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginEnd="@dimen/margin_normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/countryName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginEnd="@dimen/margin_normal"
+                    android:text="@{country.country}"
+                    android:textSize="@dimen/text_size_b2"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/countryFlag"
+                    app:layout_goneMarginStart="@dimen/margin_small" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/countryAllCases"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginEnd="@dimen/margin_normal"
+                    android:text="@{country.cases+``}"
+                    android:textSize="@dimen/text_size_b2"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/countryName"
+                    app:layout_goneMarginStart="@dimen/margin_small" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/countryRecovered"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginEnd="@dimen/margin_normal"
+                    android:text="@{country.recovered+``}"
+                    android:textSize="@dimen/text_size_b2"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/countryAllCases"
+                    app:layout_goneMarginStart="@dimen/margin_small" />
+
+                <com.google.android.material.textview.MaterialTextView
+
+                    android:id="@+id/countryDeaths"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginEnd="@dimen/margin_normal"
+                    android:text="@{country.deaths+``}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_b2"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/countryRecovered"
+                    app:layout_goneMarginStart="@dimen/margin_small" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/countryTodayCases"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginEnd="@dimen/margin_normal"
+                    android:text="@{country.todayCases+``}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_b2"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/countryDeaths"
+                    app:layout_goneMarginStart="@dimen/margin_small" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/countryTodayDeaths"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginEnd="@dimen/margin_normal"
+                    android:text="@{country.todayDeaths+``}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_b2"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/countryTodayCases"
+                    app:layout_goneMarginStart="@dimen/margin_small" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/countryTodayRecovered"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginEnd="@dimen/margin_normal"
+                    android:text="@{country.todayRecovered+``}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_b2"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/countryTodayDeaths"
+                    app:layout_goneMarginStart="@dimen/margin_small" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/countryPopulation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginEnd="@dimen/margin_normal"
+                    android:text="@{country.population+``}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_b2"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/countryTodayRecovered"
+                    app:layout_goneMarginStart="@dimen/margin_small" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

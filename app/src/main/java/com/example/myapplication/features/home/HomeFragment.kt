@@ -7,14 +7,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.myapplication.R
+import com.example.myapplication.core.utils.setOnSingleClickListener
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.features.country.CountryEntity
 import com.example.nattramn.core.resource.Status
 import com.google.android.material.snackbar.Snackbar
 
-class HomeFragment : Fragment(), OnCountryClickListener {
+class HomeFragment : Fragment(), OnCountryClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var homeViewModel: HomeViewModel
@@ -38,14 +41,26 @@ class HomeFragment : Fragment(), OnCountryClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.swipeLayout.setOnRefreshListener(this)
+        setOnAllInfoClick()
 
         showAllInfo()
-
         showCountriesList()
-
     }
 
     private fun showAllInfo() {
+        initInfoWithDatabase()
+        getInfoFromRemote()
+    }
+
+    private fun showCountriesList() {
+
+        initCountriesWithDb()
+        getCountriesFromRemote()
+
+    }
+
+    private fun getInfoFromRemote() {
         homeViewModel.getAllInfo()
 
         homeViewModel.allInfoResult.observe(viewLifecycleOwner, Observer {
@@ -68,27 +83,33 @@ class HomeFragment : Fragment(), OnCountryClickListener {
                     ).show()
                 }
             }
+            hideSwipeRefreshProgress()
         })
     }
 
-    private fun showCountriesList() {
-
-        initListWithDb()
-        getDataFromRemote()
-
+    private fun hideSwipeRefreshProgress() {
+        binding.swipeLayout.isRefreshing = false
     }
 
-    private fun getDataFromRemote() {
+    private fun initInfoWithDatabase() {
+        homeViewModel.getAllInfoDb()
+        homeViewModel.allInfoDbResult.observe(viewLifecycleOwner, Observer {
+            binding.info = it
+        })
+    }
+
+    private fun getCountriesFromRemote() {
         homeViewModel.getAllCountries()
 
         homeViewModel.allCountriesResult.observe(viewLifecycleOwner, Observer {
             if (it.status == Status.SUCCESS) {
                 showRecycler(it.data?.toList())
             }
+            hideSwipeRefreshProgress()
         })
     }
 
-    private fun initListWithDb() {
+    private fun initCountriesWithDb() {
         homeViewModel.getAllCountriesDb()
         homeViewModel.allCountriesDbResult.observe(viewLifecycleOwner, Observer {
             showRecycler(it)
@@ -112,12 +133,29 @@ class HomeFragment : Fragment(), OnCountryClickListener {
 
     }
 
+    private fun setOnAllInfoClick() {
+
+        binding.allDetails.setOnSingleClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailsFragment())
+        }
+
+    }
+
     private fun hideProgressBar() {
         binding.homeProgress.visibility = View.GONE
     }
 
     override fun onItemClick(countryName: String) {
+        findNavController().navigate(
+            HomeFragmentDirections.actionHomeFragmentToCountryFragment(
+                countryName
+            )
+        )
+    }
 
+    override fun onRefresh() {
+        getInfoFromRemote()
+        getCountriesFromRemote()
     }
 
 }

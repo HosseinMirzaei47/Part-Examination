@@ -92,5 +92,7 @@
     <string name="please_wait">Please wait</string>
     <string name="network_timeout">Something Went Wrong</string>
     <string name="home">Home</string>
+    <string name="loading_new_info_country">Loading updated information.</string>
+    <string name="details">Details</string>
 
 </resources>

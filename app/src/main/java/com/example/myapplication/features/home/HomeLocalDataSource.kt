@@ -16,7 +16,7 @@ class HomeLocalDataSource {
         }
     }
 
-    suspend fun insertCountry(data: List<CountryEntity>?) {
+    suspend fun insertCountries(data: List<CountryEntity>?) {
         db.withTransaction {
             data?.let {
                 db.countryDao().insertCountry(data)

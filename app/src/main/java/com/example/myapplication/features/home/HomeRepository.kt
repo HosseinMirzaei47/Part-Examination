@@ -66,7 +66,7 @@ class HomeRepository(
             if (request.status == Status.SUCCESS) {
 
                 response = Resource.success(request.data)
-                homeLocalDataSource.insertCountry(request.data)
+                homeLocalDataSource.insertCountries(request.data)
 
             } else if (request.status == Status.ERROR) {
                 request.message?.let {
