@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentDetailsBinding
 import com.example.nattramn.core.resource.Status
+import com.google.android.material.snackbar.Snackbar
 
 class DetailsFragment : Fragment() {
 
@@ -46,9 +48,18 @@ class DetailsFragment : Fragment() {
                     binding.info = it.data
                 }
                 Status.LOADING -> {
-
+                    Snackbar.make(
+                        requireView(),
+                        getString(R.string.please_wait),
+                        Snackbar.LENGTH_SHORT
+                    ).show()
                 }
                 else -> {
+                    Snackbar.make(
+                        requireView(),
+                        getString(R.string.network_timeout),
+                        Snackbar.LENGTH_SHORT
+                    ).show()
                 }
             }
         })

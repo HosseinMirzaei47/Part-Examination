@@ -1,6 +1,8 @@
 package com.example.myapplication.features.home
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +25,8 @@ class HomeFragment : Fragment(), OnCountryClickListener, SwipeRefreshLayout.OnRe
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var countriesAdapter: CountriesAdapter
 
+    private lateinit var countries: List<CountryEntity>
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,6 +47,7 @@ class HomeFragment : Fragment(), OnCountryClickListener, SwipeRefreshLayout.OnRe
         super.onViewCreated(view, savedInstanceState)
         binding.swipeLayout.setOnRefreshListener(this)
         setOnAllInfoClick()
+        filterFeedArticles()
 
         showAllInfo()
         showCountriesList()
@@ -103,6 +108,11 @@ class HomeFragment : Fragment(), OnCountryClickListener, SwipeRefreshLayout.OnRe
 
         homeViewModel.allCountriesResult.observe(viewLifecycleOwner, Observer {
             if (it.status == Status.SUCCESS) {
+
+                it.data?.let { all ->
+                    countries = all.toList()
+                }
+
                 showRecycler(it.data?.toList())
             }
             hideSwipeRefreshProgress()
@@ -112,6 +122,7 @@ class HomeFragment : Fragment(), OnCountryClickListener, SwipeRefreshLayout.OnRe
     private fun initCountriesWithDb() {
         homeViewModel.getAllCountriesDb()
         homeViewModel.allCountriesDbResult.observe(viewLifecycleOwner, Observer {
+            countries = it
             showRecycler(it)
         })
     }
@@ -143,6 +154,29 @@ class HomeFragment : Fragment(), OnCountryClickListener, SwipeRefreshLayout.OnRe
 
     private fun hideProgressBar() {
         binding.homeProgress.visibility = View.GONE
+    }
+
+    private fun filterFeedArticles() {
+        binding.textInputSearch.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(charSequence: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                val target = charSequence.toString()
+                if (target.isNotEmpty()) {
+                    target[0].toUpperCase()
+                }
+
+                val filterResult = countries.filter {
+                    it.country.contains(target)
+                }
+                showRecycler(filterResult)
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+            }
+
+        })
     }
 
     override fun onItemClick(countryName: String) {

@@ -101,5 +101,7 @@
     <string name="deaths_per_million">Deaths Per Million</string>
     <string name="cases_per_million">Cases Per Million</string>
     <string name="affected_countries">Affected Countries</string>
+    <string name="population">Population</string>
+    <string name="country_name">Country Name</string>
 
 </resources>
