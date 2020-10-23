@@ -8,6 +8,10 @@
             name="country"
             type="com.example.myapplication.features.country.CountryEntity" />
 
+        <variable
+            name="onClickListener"
+            type="android.view.View.OnClickListener" />
+
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -33,6 +37,7 @@
                 android:layout_width="@dimen/global_item_image_size"
                 android:layout_height="@dimen/global_item_image_size"
                 android:layout_margin="@dimen/margin_normal"
+                android:onClick="@{onClickListener}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -43,6 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_micro"
+                android:onClick="@{onClickListener}"
                 android:text="@{country.country}"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_b2"

@@ -7,23 +7,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.myapplication.R
 import com.example.myapplication.core.utils.setOnSingleClickListener
+import com.example.myapplication.countryRow
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.features.country.CountryEntity
 import com.example.nattramn.core.resource.Status
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.fragment_home.*
 
-class HomeFragment : Fragment(), OnCountryClickListener, SwipeRefreshLayout.OnRefreshListener {
+class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var homeViewModel: HomeViewModel
-    private lateinit var countriesAdapter: CountriesAdapter
 
     private lateinit var countries: List<CountryEntity>
 
@@ -68,7 +67,7 @@ class HomeFragment : Fragment(), OnCountryClickListener, SwipeRefreshLayout.OnRe
     private fun getInfoFromRemote() {
         homeViewModel.getAllInfo()
 
-        homeViewModel.allInfoResult.observe(viewLifecycleOwner, Observer {
+        homeViewModel.allInfoResult.observe(viewLifecycleOwner, {
             when (it.status) {
                 Status.SUCCESS -> {
                     binding.info = it.data
@@ -98,7 +97,7 @@ class HomeFragment : Fragment(), OnCountryClickListener, SwipeRefreshLayout.OnRe
 
     private fun initInfoWithDatabase() {
         homeViewModel.getAllInfoDb()
-        homeViewModel.allInfoDbResult.observe(viewLifecycleOwner, Observer {
+        homeViewModel.allInfoDbResult.observe(viewLifecycleOwner, {
             binding.info = it
         })
     }
@@ -106,7 +105,7 @@ class HomeFragment : Fragment(), OnCountryClickListener, SwipeRefreshLayout.OnRe
     private fun getCountriesFromRemote() {
         homeViewModel.getAllCountries()
 
-        homeViewModel.allCountriesResult.observe(viewLifecycleOwner, Observer {
+        homeViewModel.allCountriesResult.observe(viewLifecycleOwner, {
             if (it.status == Status.SUCCESS) {
 
                 it.data?.let { all ->
@@ -121,23 +120,30 @@ class HomeFragment : Fragment(), OnCountryClickListener, SwipeRefreshLayout.OnRe
 
     private fun initCountriesWithDb() {
         homeViewModel.getAllCountriesDb()
-        homeViewModel.allCountriesDbResult.observe(viewLifecycleOwner, Observer {
+        homeViewModel.allCountriesDbResult.observe(viewLifecycleOwner, {
             countries = it
             showRecycler(it)
         })
     }
 
     private fun showRecycler(list: List<CountryEntity>?) {
-        list?.let {
-            countriesAdapter = CountriesAdapter(
-                it,
-                this
-            )
-        }
 
-        binding.recyclerHome.apply {
-            adapter = countriesAdapter
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        recyclerHome.withModels {
+            list?.forEachIndexed { _, country ->
+                countryRow {
+                    id(country.population)
+                    country(country)
+                    onClickListener { _ ->
+                        country.countryInfo?.countryName?.let { countryArg ->
+                            findNavController().navigate(
+                                HomeFragmentDirections.actionHomeFragmentToCountryFragment(
+                                    countryArg
+                                )
+                            )
+                        }
+                    }
+                }
+            }
         }
 
         hideProgressBar()
@@ -177,14 +183,6 @@ class HomeFragment : Fragment(), OnCountryClickListener, SwipeRefreshLayout.OnRe
             }
 
         })
-    }
-
-    override fun onItemClick(countryName: String) {
-        findNavController().navigate(
-            HomeFragmentDirections.actionHomeFragmentToCountryFragment(
-                countryName
-            )
-        )
     }
 
     override fun onRefresh() {

@@ -172,7 +172,7 @@
 
             </com.google.android.material.card.MaterialCardView>
 
-            <androidx.recyclerview.widget.RecyclerView
+            <com.airbnb.epoxy.EpoxyRecyclerView
                 android:id="@+id/recyclerHome"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -183,7 +183,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/allDetails"
-                tools:listitem="@layout/item_country_row" />
+                tools:listitem="@layout/epoxy_holder_country_row" />
 
             <ProgressBar
                 android:id="@+id/homeProgress"
